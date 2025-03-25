@@ -1,0 +1,5 @@
+.main {
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: 100%;
+}

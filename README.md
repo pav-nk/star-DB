@@ -1,1 +1,1 @@
-# star-DB
+# Star DB

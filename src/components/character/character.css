@@ -1,0 +1,20 @@
+.character {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  flex: 1 0 auto;
+}
+
+.character .person-image {
+  width: 30%;
+  height: 30%;
+  border-radius: 10px;
+}
+
+.character .list-group-item {
+  padding: 0.25rem;
+}
+
+.character .list-group-item .term {
+  margin-right: 0.5rem;
+}
