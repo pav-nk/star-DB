@@ -10,8 +10,14 @@ export default class SwapiService {
     return await res.json();
   }
 
+  async getRandomCharacterId() {
+    const res = await this.getResource(`/characters`);
+    const randomId = Math.floor(Math.random() * res.data.length);
+    return res.data.map((item) => item._id)[randomId];
+  }
+
   async getAllCharacters() {
-    const res = await this.getResource(`/characters?limit=20`);
+    const res = await this.getResource(`/characters`);
     return res.data.map(this._transformData);
   }
 
@@ -21,7 +27,7 @@ export default class SwapiService {
   }
 
   async getAllLocations() {
-    const res = await this.getResource(`/locations?limit=20`);
+    const res = await this.getResource(`/locations`);
     return res.data.map(this._transformData);
   }
 
@@ -31,7 +37,7 @@ export default class SwapiService {
   }
 
   async getAllOrganizations() {
-    const res = await this.getResource(`/organizations?limit=20`);
+    const res = await this.getResource(`/organizations`);
     return res.data.map(this._transformData);
   }
 
@@ -41,7 +47,7 @@ export default class SwapiService {
   }
 
   async getAllDroids() {
-    const res = await this.getResource(`/droids?limit=20`);
+    const res = await this.getResource(`/droids`);
     return res.data.map(this._transformData);
   }
 

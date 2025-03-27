@@ -15,8 +15,23 @@ export default class RandomCharacter extends Component {
 
   swapiService = new SwapiService();
 
-  updateItem = () => {
-    // TODO
+  componentDidMount() {
+    console.log("did mount");
+    this.updateItem();
+    this.interval = setInterval(() => this.updateItem(), 10000);
+  }
+
+  componentWillUnmount() {
+    console.log("un mount");
+    clearInterval(this.interval);
+  }
+
+  updateItem = async () => {
+    const randomId = await this.swapiService.getRandomCharacterId();
+    this.swapiService
+      .getCharacter(randomId)
+      .then(this.onCharacterLoaded)
+      .catch(this.onError);
   };
 
   onError = () => {
@@ -24,17 +39,8 @@ export default class RandomCharacter extends Component {
   };
 
   onCharacterLoaded = (data) => {
-    this.setState(() => ({ data, loading: false }));
+    this.setState({ data, loading: false, error: false });
   };
-
-  componentDidMount() {
-    this.updateItem();
-    this.interval = setInterval(this.updateItem, 10000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
 
   render() {
     const {

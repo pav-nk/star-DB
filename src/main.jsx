@@ -1,9 +1,6 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./components/app";
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+import "./bootstrap.darkly.css";
+
+createRoot(document.getElementById("root")).render(<App />);
