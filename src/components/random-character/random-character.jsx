@@ -8,31 +8,37 @@ import "./random-character.css";
 
 export default class RandomCharacter extends Component {
   state = {
-    planet: {},
+    data: {},
     loading: true,
     error: false,
   };
 
   swapiService = new SwapiService();
 
+  updateItem = () => {
+    // TODO
+  };
+
   onError = () => {
     this.setState({ error: true, loading: false });
   };
 
-  onCharacterLoaded = (planet) => {
-    this.setState(() => ({ planet, loading: false }));
+  onCharacterLoaded = (data) => {
+    this.setState(() => ({ data, loading: false }));
   };
 
   componentDidMount() {
-    this.swapiService
-      .getCharacter("64292927021f17e13fbc1e46")
-      .then((data) => this.onCharacterLoaded(data))
-      .catch(this.onError);
+    this.updateItem();
+    this.interval = setInterval(this.updateItem, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
     const {
-      planet: { name, description, image },
+      data: { name, description, image },
       error,
       loading,
     } = this.state;
